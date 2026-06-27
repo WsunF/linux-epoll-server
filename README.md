@@ -13,16 +13,19 @@
 
 ## 项目结构
 
+本项目采用单文件迭代的方式开发，每个阶段的实现通过 Git commit 记录下来，可通过提交历史查看完整的演进过程：
+
+```bash
+git log --oneline
+```
+
 ```
 .
-├── step1_echo/
-│   └── echo_server.cpp      # 单线程阻塞式 TCP echo 服务器
-├── step2_epoll/
-│   └── epoll_server.cpp     # 引入 epoll，单线程处理多个并发连接
+├── echo_server.cpp      # 当前最新版本源码
 └── README.md
 ```
 
-## 已完成功能
+## 已完成功能（按开发顺序，对应 Git commit 历史）
 
 ### Step 1：单线程 TCP Echo 服务器
 使用 `socket` / `bind` / `listen` / `accept` / `read` / `write` 实现最基础的回显服务器。
@@ -49,12 +52,9 @@
 
 ## 如何编译运行
 
-每个步骤目录下都是独立可编译的单文件程序，例如运行 Step 2：
-
 ```bash
-cd step2_epoll
-g++ -Wall -o epoll_server epoll_server.cpp
-./epoll_server
+g++ -Wall -o echo_server echo_server.cpp
+./echo_server
 ```
 
 服务器默认监听 `8080` 端口，可用 `nc 127.0.0.1 8080` 或 `telnet 127.0.0.1 8080` 进行连接测试。
