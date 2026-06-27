@@ -1,0 +1,4 @@
+# 编译产物，不需要进版本控制
+*.o
+echo_server
+epoll_server
